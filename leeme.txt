@@ -1,0 +1,64 @@
+===========================================================================
+                MOTOR HFT DE LIQUIDEZ Y REBOTES (BINANCE)
+===========================================================================
+Este sistema es un motor de análisis de alta frecuencia diseñado para 
+monitorear en tiempo real la liquidez de Binance (Spot y Futuros). Utiliza 
+conexiones directas por WebSockets para procesar el Order Book, detectar 
+liquidaciones y calcular el CVD (Cumulative Volume Delta).
+
+1. REQUISITOS PREVIOS
+---------------------
+- Python 3.8 o superior instalado.
+- Conexión a internet estable (para los WebSockets de Binance).
+- Terminal/Consola con soporte para colores (PowerShell, CMD moderno o Bash).
+
+2. ESTRUCTURA DE ARCHIVOS NECESARIA
+-----------------------------------
+Para que el proceso funcione, asegurate de tener estos archivos en la misma carpeta:
+- Rebotes.py         (El código principal del motor).
+- requirements.txt   (Lista de librerías externas).
+- config.json        (Configuración de parámetros).
+- leeme.txt          (Este manual de instrucciones).
+
+3. INSTALACIÓN (PASO A PASO)
+----------------------------
+Abrí una terminal en la carpeta del proyecto y seguí estos comandos:
+
+PASO A: Crear un entorno virtual (Recomendado para evitar conflictos)
+   python -m venv venv
+
+PASO B: Activar el entorno virtual
+   - En Windows:      venv\Scripts\activate
+   - En Linux/Mac:    source venv/bin/activate
+
+PASO C: Instalar las librerías necesarias
+   pip install -r requirements.txt
+
+4. CONFIGURACIÓN (config.json)
+------------------------------
+El archivo 'config.json' permite ajustar el comportamiento del bot:
+- "symbol": El par a tradear (ej. BTCUSDT, ETHUSDT).
+- "anti_spoofing_ticks": Filtra órdenes falsas alejadas del precio actual.
+- "impact_zone_pct": % de distancia al muro para activar la alerta visual.
+- "sound_alerts": true/false para activar alarmas sonoras.
+
+5. EJECUCIÓN
+------------
+Con el entorno virtual activado, ejecutá:
+   python Rebotes.py
+
+El script comenzará a descargar el historial de órdenes a la memoria RAM. 
+Una vez sincronizado (cuando veas el indicador "VIVO" en verde), el motor 
+empezará a mostrar las señales de confluencia.
+
+6. CONSIDERACIONES TÉCNICAS
+---------------------------
+- Memoria RAM: El script mantiene el libro de órdenes en RAM para máxima 
+  velocidad. No cierres la consola mientras el motor esté operando.
+- Salida segura: Para detener el proceso, presioná Ctrl + C.
+- Logs: Las señales detectadas se guardan automáticamente en el archivo 
+  'trading_signals_log.txt' para tu revisión posterior.
+
+===========================================================================
+Desarrollado para análisis profesional de liquidez y order flow.
+===========================================================================
