@@ -1,0 +1,23 @@
+name: Python syntax validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Python source files
+        run: python -m compileall -q .
+      # Static syntax check only; does not validate exchange APIs, strategy performance or trading behavior.
