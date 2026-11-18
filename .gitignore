@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Local runtime state and credentials
+config.json
+config_*.json
+trading_signals_log.txt
+*.pem
+*.key
